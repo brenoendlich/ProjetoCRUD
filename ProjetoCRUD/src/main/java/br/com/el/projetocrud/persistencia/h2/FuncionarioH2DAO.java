@@ -37,7 +37,7 @@ public class FuncionarioH2DAO implements DAO<Funcionario> {
         try {
             em.getTransaction().begin();
             em.persist(o);
-            em.getTransaction().commit();
+            em.getTransaction().commit(); 
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
