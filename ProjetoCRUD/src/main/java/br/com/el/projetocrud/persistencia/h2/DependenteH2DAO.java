@@ -51,7 +51,7 @@ public class DependenteH2DAO implements DAO<Dependente> {
         try {
             em.getTransaction().begin();
             if (!em.contains(o)) {
-                Object ob = em.find(Object.class, o.getId());
+                Dependente ob = em.find(Dependente.class, o.getId());
                 em.remove(ob);
             } else {
                 em.remove(o);

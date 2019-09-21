@@ -5,7 +5,6 @@
  */
 package br.com.el.projetocrud.persistencia.h2;
 
-import br.com.el.projetocrud.modelo.Dependente;
 import br.com.el.projetocrud.modelo.Funcionario;
 import br.com.el.projetocrud.persistencia.DAO;
 import static br.com.el.projetocrud.persistencia.DAO.EMF;
@@ -19,6 +18,7 @@ import javax.persistence.Query;
  * @author breno.rodrigues
  */
 public class FuncionarioH2DAO implements DAO<Funcionario> {
+
     private static FuncionarioH2DAO instance;
 
     private FuncionarioH2DAO() {
@@ -37,7 +37,7 @@ public class FuncionarioH2DAO implements DAO<Funcionario> {
         try {
             em.getTransaction().begin();
             em.persist(o);
-            em.getTransaction().commit(); 
+            em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
@@ -51,7 +51,7 @@ public class FuncionarioH2DAO implements DAO<Funcionario> {
         try {
             em.getTransaction().begin();
             if (!em.contains(o)) {
-                Object ob = em.find(Object.class, o.getId());
+                Funcionario ob = em.find(Funcionario.class, o.getId());
                 em.remove(ob);
             } else {
                 em.remove(o);
