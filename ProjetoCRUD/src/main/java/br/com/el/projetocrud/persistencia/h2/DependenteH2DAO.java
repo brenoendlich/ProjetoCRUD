@@ -21,7 +21,7 @@ public class DependenteH2DAO implements DAO<Dependente> {
 
     private static DependenteH2DAO instance;
 
-    private DependenteH2DAO() {
+    public DependenteH2DAO() {
     }
 
     public static DependenteH2DAO GetInstance() {

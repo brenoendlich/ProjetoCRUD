@@ -27,7 +27,7 @@ public class Funcionario {
     @Column(length = 10, nullable = false)
     private String matricula;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "responsavel")
+    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL)
     private List<Dependente> dependentes;
 
     public Funcionario() {

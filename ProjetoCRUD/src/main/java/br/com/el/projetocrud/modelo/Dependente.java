@@ -13,7 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -29,8 +29,8 @@ public class Dependente implements Serializable {
     @Column(length = 200, nullable = false)
     private String nome;
     
-    @OneToMany()
-    @JoinColumn(name = "id_responsavel", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_responsavel", referencedColumnName = "id", nullable = false)
     private Funcionario responsavel;
 
     public Dependente() {

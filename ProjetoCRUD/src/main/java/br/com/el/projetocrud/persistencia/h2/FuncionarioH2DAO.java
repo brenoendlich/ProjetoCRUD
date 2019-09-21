@@ -11,6 +11,8 @@ import static br.com.el.projetocrud.persistencia.DAO.EMF;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -21,7 +23,7 @@ public class FuncionarioH2DAO implements DAO<Funcionario> {
 
     private static FuncionarioH2DAO instance;
 
-    private FuncionarioH2DAO() {
+    public FuncionarioH2DAO() {
     }
 
     public static FuncionarioH2DAO GetInstance() {
@@ -33,7 +35,8 @@ public class FuncionarioH2DAO implements DAO<Funcionario> {
 
     @Override
     public void salvar(Funcionario o) {
-        EntityManager em = EMF.createEntityManager();
+        EntityManagerFactory teste = Persistence.createEntityManagerFactory("bd-h2-pu");
+        EntityManager em = teste.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(o);
