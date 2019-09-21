@@ -5,10 +5,12 @@
  */
 package br.com.el.projetocrud.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +20,8 @@ import javax.persistence.OneToMany;
  *
  * @author breno.rodrigues
  */
-public class Funcionario {
+@Entity
+public class Funcionario implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +30,7 @@ public class Funcionario {
     @Column(length = 10, nullable = false)
     private String matricula;
     
-    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "responsavel")
     private List<Dependente> dependentes;
 
     public Funcionario() {

@@ -30,7 +30,6 @@ public class Dependente implements Serializable {
     private String nome;
     
     @ManyToOne
-    @JoinColumn(name = "id_responsavel", referencedColumnName = "id", nullable = false)
     private Funcionario responsavel;
 
     public Dependente() {
