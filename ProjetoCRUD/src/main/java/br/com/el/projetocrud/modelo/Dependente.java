@@ -5,15 +5,32 @@
  */
 package br.com.el.projetocrud.modelo;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author breno.rodrigues
  */
-public class Dependente {
+@Entity
+public class Dependente implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(length = 200, nullable = false)
     private String nome;
+    
+    @OneToMany()
+    @JoinColumn(name = "id_responsavel", nullable = false)
     private Funcionario responsavel;
 
     public Dependente() {

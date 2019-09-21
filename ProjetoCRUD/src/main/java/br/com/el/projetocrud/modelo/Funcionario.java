@@ -7,13 +7,27 @@ package br.com.el.projetocrud.modelo;
 
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author breno.rodrigues
  */
 public class Funcionario {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(length = 10, nullable = false)
     private String matricula;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "responsavel")
     private List<Dependente> dependentes;
 
     public Funcionario() {
@@ -38,6 +52,14 @@ public class Funcionario {
 
     public void setDependentes(List<Dependente> dependentes) {
         this.dependentes = dependentes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
