@@ -22,4 +22,6 @@ public interface DAO<T> {
     public void excluir(T o);
 
     public List<T> buscarTodos();
+    
+    public T buscar(Object identificador);
 }

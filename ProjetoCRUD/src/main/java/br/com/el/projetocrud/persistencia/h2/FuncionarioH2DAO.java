@@ -35,8 +35,7 @@ public class FuncionarioH2DAO implements DAO<Funcionario> {
 
     @Override
     public void salvar(Funcionario o) {
-        EntityManagerFactory teste = Persistence.createEntityManagerFactory("bd-h2-pu");
-        EntityManager em = teste.createEntityManager();
+        EntityManager em = EMF.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(o);
@@ -54,7 +53,7 @@ public class FuncionarioH2DAO implements DAO<Funcionario> {
         try {
             em.getTransaction().begin();
             if (!em.contains(o)) {
-                Funcionario ob = em.find(Funcionario.class, o.getId());
+                Funcionario ob = em.find(Funcionario.class, o.getMatricula());
                 em.remove(ob);
             } else {
                 em.remove(o);
@@ -65,6 +64,22 @@ public class FuncionarioH2DAO implements DAO<Funcionario> {
         } finally {
             em.close();
         }
+    }
+
+    @Override
+    public Funcionario buscar(Object matricula) {
+        Funcionario func = null;
+        EntityManager em = EMF.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            func = em.find(Funcionario.class, matricula);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return func;
     }
 
     @Override

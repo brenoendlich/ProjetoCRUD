@@ -10,5 +10,5 @@ package br.com.el.projetocrud.visao;
  * @author breno.rodrigues
  */
 public interface Tela {
-    
+    void exibeMenu();
 }

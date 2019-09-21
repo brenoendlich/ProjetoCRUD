@@ -11,6 +11,7 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,16 +22,17 @@ import javax.persistence.OneToMany;
  * @author breno.rodrigues
  */
 @Entity
-public class Funcionario implements Serializable{
-    
+public class Funcionario implements Serializable {
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
     @Column(length = 10, nullable = false)
     private String matricula;
-    
-    @OneToMany(mappedBy = "responsavel")
+
+    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Dependente> dependentes;
 
     public Funcionario() {
@@ -57,13 +59,13 @@ public class Funcionario implements Serializable{
         this.dependentes = dependentes;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     @Override
     public int hashCode() {
@@ -94,5 +96,5 @@ public class Funcionario implements Serializable{
     public String toString() {
         return "Funcionario{" + "matricula=" + matricula + ", dependentes=" + dependentes + '}';
     }
-    
+
 }

@@ -65,6 +65,22 @@ public class DependenteH2DAO implements DAO<Dependente> {
     }
 
     @Override
+    public Dependente buscar(Object id) {
+        Dependente func = null;
+        EntityManager em = EMF.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            func = em.find(Dependente.class, id);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return func;
+    }
+
+    @Override
     public List<Dependente> buscarTodos() {
         List<Dependente> lista = new ArrayList<>();
         EntityManager em = EMF.createEntityManager();
