@@ -21,14 +21,14 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Dependente implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(length = 200, nullable = false)
     private String nome;
-    
+
     @ManyToOne
     private Funcionario responsavel;
 
@@ -92,7 +92,7 @@ public class Dependente implements Serializable {
 
     @Override
     public String toString() {
-        return "Dependente{" + "id=" + id + ", nome=" + nome + ", responsavel=" + responsavel + '}';
+        return "Dependente{" + "id=" + id + ", nome=" + nome + ", responsavel=" + responsavel + "}";
     }
-    
+
 }

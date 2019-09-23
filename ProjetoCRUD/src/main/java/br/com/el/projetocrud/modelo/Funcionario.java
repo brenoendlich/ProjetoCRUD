@@ -94,7 +94,7 @@ public class Funcionario implements Serializable {
 
     @Override
     public String toString() {
-        return "Funcionario{" + "matricula=" + matricula + ", dependentes=" + dependentes + '}';
+        return "Funcionario{" + "matricula=" + matricula + "}";
     }
 
 }
